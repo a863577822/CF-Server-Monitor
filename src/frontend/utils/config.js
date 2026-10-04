@@ -66,6 +66,9 @@ export const getTitle = () => title
 
 export const getPublicAssetUrl = (assetPath) => {
   const cleanPath = String(assetPath || '').replace(/^\/+/, '')
+  if (import.meta.env.VITE_PULSE_THEME === 'true') {
+    return cleanPath.startsWith('files/') ? `./assets/${cleanPath}` : `/${cleanPath}`
+  }
   return cleanPath ? `./${cleanPath}` : './'
 }
 

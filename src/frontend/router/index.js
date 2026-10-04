@@ -6,11 +6,11 @@ const routes = [
     name: 'Dashboard',
     component: () => import('../views/Dashboard.vue')
   },
-  {
+  ...(import.meta.env.VITE_PULSE_THEME === 'true' ? [] : [{
     path: '/admin',
     name: 'Admin',
     component: () => import('../views/admin/index.vue')
-  },
+  }]),
   {
     path: '/server/:id',
     name: 'Server',

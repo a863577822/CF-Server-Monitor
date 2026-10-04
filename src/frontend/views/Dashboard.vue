@@ -1,6 +1,7 @@
 <template>
   <div class="container" :class="{ 'mikus-dashboard': isMikusTheme }">
     <TerminalHeader :title="sysConfig.site_title || DEFAULT_SITE_TITLE" />
+    <PulseHero v-if="isPulseTheme" :title="sysConfig.site_title || DEFAULT_SITE_TITLE" :online="stats.online" :connected="liveConnected" />
     
     <div v-if="isLoading" class="loading-state" :class="{ 'mikus-loading-state': isMikusTheme }">
       <template v-if="isMikusTheme">
@@ -367,6 +368,8 @@
 import { ref, computed, inject, nextTick, onMounted, onUnmounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import TerminalHeader from '../components/TerminalHeader.vue'
+import PulseHero from '../components/PulseHero.vue'
+import { isPulseThemeEnabled } from '../utils/pulseTheme'
 import ServerBarCard from '../components/ServerBarCard.vue'
 import ServerRingCard from '../components/ServerRingCard.vue'
 import Footer from '../components/Footer.vue'
@@ -440,6 +443,7 @@ const router = useRouter()
 const trans = useTranslation()
 const financeRateCurrencies = DISPLAY_FINANCE_CURRENCIES
 const isMikusTheme = computed(() => isMikusThemeEnabled(sysConfig.value.theme_options))
+const isPulseTheme = computed(() => isPulseThemeEnabled(sysConfig.value.theme_options))
 
 const mikusAsset = (filename) => getMikusAssetUrl(filename)
 

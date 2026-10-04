@@ -70,7 +70,7 @@ const { currentTheme, setTheme } = useTheme()
 const currentLang = ref('en')
 const route = useRoute()
 const isAdminPage = ref(route.path === '/admin')
-const adminHref = computed(() => hasConfiguredApiBase() ? '/#/admin' : '/admin#/admin')
+const adminHref = computed(() => import.meta.env.VITE_PULSE_THEME === 'true' ? '/admin#admin' : hasConfiguredApiBase() ? '/#/admin' : '/admin#/admin')
 
 const setLang = (lang) => {
   setLanguage(lang)

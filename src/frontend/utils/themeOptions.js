@@ -27,7 +27,7 @@ export const isThemeOptionEnabled = (options, key) => {
   return true
 }
 
-export const isMikusThemeEnabled = (options) => isThemeOptionEnabled(options, 'mikus')
+export const isMikusThemeEnabled = (options) => import.meta.env?.VITE_PULSE_THEME !== 'true' && !isThemeOptionEnabled(options, 'starry') && !isThemeOptionEnabled(options, 'pulse') && isThemeOptionEnabled(options, 'mikus')
 
 export const getMikusAssetUrl = (filename) => {
   const normalizedFilename = String(filename || '').replace(/^\/+/, '')
